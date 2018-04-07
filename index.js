@@ -6,12 +6,11 @@ const fs = require("fs");
 const getYouTubeID = require("get-youtube-id");
 const fetchVideoInfo = require("youtube-info");
 
-var config = JSON.parse(fs.readFileSync('./settings.json', 'utf-8'));
 
-const yt_api_key = config.yt_api_key;
-const bot_controller = config.bot_controller;
-const prefix = config.prefix;
-const discord_token = config.discord_token;
+const yt_api_key = process.env.yt_api_key;
+const bot_controller = process.env.bot_controller;
+const prefix = process.env.prefix;
+const discord_token = process.env.discord_token;
 
 var queue = [];
 var isPlaying = false;
@@ -20,7 +19,7 @@ var voiceChannel = null;
 var skipReq = 0;
 var skippers = [];
 
-client.login(discord_token);
+client.login(process.env.discord_token);
 
 client.on('message', function(message) {
   const member = message.member;
